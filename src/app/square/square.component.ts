@@ -20,6 +20,7 @@ export class SquareComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.randomColor();
   }
 
 }
