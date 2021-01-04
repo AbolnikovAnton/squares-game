@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 
 @Component({
   selector: 'app-square',
   templateUrl: './square.component.html',
   styleUrls: ['./square.component.scss']
 })
+
 export class SquareComponent implements OnInit {
   color;
 
@@ -16,6 +17,7 @@ export class SquareComponent implements OnInit {
     }
     this.color = color;
   }
+
   constructor() {
   }
 
