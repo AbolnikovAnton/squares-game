@@ -20,7 +20,19 @@ export class AppComponent implements OnInit {
     this.squares$ = firestore.collection('squares-colors').valueChanges();
   }
 
+  randomColor = () => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
+
   ngOnInit(): void {
   }
 
+  setRandomColor(square: any): void {
+    console.log(square);
+  }
 }

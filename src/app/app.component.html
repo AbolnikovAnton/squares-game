@@ -1,6 +1,1 @@
-<app-square *ngFor="let squares of squaresArr"></app-square>
-<ul>
-  <li *ngFor="let square of squares$ | async">
-    {{ square.index }}
-  </li>
-</ul>
+<app-square *ngFor="let square of squares$ | async" [color]="square['color']" (click)="setRandomColor(square)"></app-square>
