@@ -7,6 +7,7 @@ import {SquareComponent} from './square/square.component';
 import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
+import {APP_BASE_HREF} from '@angular/common';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyBlJGgjStU6JjWxmoa2VdRbpPktGeqXkzs',
@@ -30,7 +31,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule
   ],
-  providers: [AngularFirestore],
+  providers: [AngularFirestore, {provide: APP_BASE_HREF, useValue: environment.production ? './' : '/'}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
