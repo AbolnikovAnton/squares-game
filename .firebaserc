@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "squares-game-75ccc"
+  },
+  "targets": {
+    "squares-game-75ccc": {
+      "hosting": {
+        "squares-game": [
+          "squares-game-75ccc"
+        ]
+      }
+    }
+  }
+}

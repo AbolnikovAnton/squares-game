@@ -1,4 +1,4 @@
-class Square {
+export class Square {
     index: number;
     color: string;
 }
