@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Square} from './square';
 import {AngularFirestore} from '@angular/fire/firestore';
+import firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,7 @@ export class AppComponent implements OnInit {
 
   squares$: Observable<any[]>;
 
-  constructor(firestore: AngularFirestore) {
+  constructor(private firestore: AngularFirestore) {
     this.squares$ = firestore.collection('squares-colors').valueChanges();
   }
 
@@ -29,10 +30,27 @@ export class AppComponent implements OnInit {
     return color;
   };
 
-  ngOnInit(): void {
+  // TODO detect if squares exists
+  async ngOnInit(): Promise<void> {
+    for (const sq of this.squaresArr) {
+      const sqRef = this.firestore.collection('squares-colors').doc(sq.toString());
+      const sqDoc = await sqRef.get();
+      sqDoc.toPromise().then(x => {
+        if (!x.exists) {
+          this.firestore.collection('squares-colors').doc(sq.toString()).set({
+            index: sq,
+            color: this.randomColor()
+          });
+        }
+      });
+    }
   }
 
   setRandomColor(square: any): void {
     console.log(square);
+    this.firestore.collection('squares-colors').doc(square['index'].toString()).set({
+      index: square['index'],
+      color: this.randomColor()
+    });
   }
 }
